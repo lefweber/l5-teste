@@ -1,0 +1,31 @@
+{
+    "name": "l5/app",
+    "description": "Test for Junior Developer 1 and 2 position.",
+    "type": "project",
+    "license": "MIT license",
+    "autoload": {
+        "psr-4": {
+            "L5\\App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Felipe Weber",
+            "email": "contato@felipeweber.dev.br"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "twbs/bootstrap": "^5.3"
+    },
+    "scripts": {
+      "post-install-cmd": [
+          "cp vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/css/",
+          "cp vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js public/js/"
+      ],
+      "post-update-cmd": [
+          "cp vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/css/",
+          "cp vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js public/js/"
+      ]
+  }
+}
