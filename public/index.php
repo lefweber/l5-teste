@@ -63,7 +63,7 @@ require __DIR__ . '/../vendor/autoload.php';
           <a class="nav-link" href="#">Home</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
+      <form action="search.php" class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-info" type="submit">Search</button>
       </form>
