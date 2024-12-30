@@ -79,15 +79,15 @@ require __DIR__ . '/../vendor/autoload.php';
       <button type="button" data-bs-target="#carouselSWTube" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      <div class="carousel-item active" data-bs-interval="3000">
         <img src="img/the-empire-strikes-back.jpg" class="d-block w-100" style="margin: 0 auto;" alt="...">
         <div class="carousel-caption d-none d-md-block"></div>
       </div>
-      <div class="carousel-item">
+      <div class="carousel-item" data-bs-interval="3000">
         <img src="img/return-of-the-jedi.jpg" class="d-block w-100"  style="margin: 0 auto;" alt="...">
         <div class="carousel-caption d-none d-md-block"></div>
       </div>
-      <div class="carousel-item">
+      <div class="carousel-item" data-bs-interval="3000">
         <img src="img/attack-of-the-clones.jpg" class="d-block w-100"  style="margin: 0 auto;" alt="...">
         <div class="carousel-caption d-none d-md-block"></div>
       </div>
