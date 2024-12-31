@@ -6,6 +6,6 @@ class DetailsController extends Controller
 {
     public function index()
     {
-      return $this->view('details');
+      $this->view('details');
     }
 }

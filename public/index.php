@@ -16,7 +16,7 @@ if (array_key_exists($uri, $routes)) {
   [$controller, $method] = $routes[$uri];
 
   if (class_exists($controller) && method_exists($controller, $method)) {
-      echo (new $controller)->$method();
+      (new $controller)->$method();
       exit;
   }
 }
