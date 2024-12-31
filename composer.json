@@ -5,7 +5,7 @@
     "license": "MIT license",
     "autoload": {
         "psr-4": {
-            "L5\\App\\": "app/"
+            "App\\": "app/"
         }
     },
     "authors": [

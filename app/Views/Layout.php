@@ -1,9 +1,3 @@
-<?php
-
-require __DIR__ . '/../vendor/autoload.php';
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,6 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SWTube - Uma Plataforma Star Wars</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <?php echo $css ?>
 </head>
 <body data-bs-theme="dark">
 
@@ -26,7 +21,7 @@ require __DIR__ . '/../vendor/autoload.php';
           <a class="nav-link" href="/">Home</a>
         </li>
       </ul>
-      <form action="search.php" class="d-flex" role="search">
+      <form action="/search" class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-info" type="submit">Search</button>
       </form>
@@ -34,32 +29,9 @@ require __DIR__ . '/../vendor/autoload.php';
   </div>
 </nav>
 
-<main style="padding-top: 100px; padding-bottom: 38px;">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <img src="img/revenge-of-the-sith_large.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-          </ul>
-          <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
+<?php echo $viewContent ?>
 
-<footer>
+<footer style="margin-top: 50px;">
       <div class="d-flex justify-content-center align-items-center text-body-tertiary w-100" style="font-size: 0.8rem; height: 50px; background-color: rgb(23, 25, 28);">
         <?php echo Date('Y') . ' - SWTube - Todos os Direitos Reservados'; ?>
       </div>
