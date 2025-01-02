@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SWTube - Uma Plataforma Star Wars</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
   <?php echo $css ?>
 </head>
 <body data-bs-theme="dark">
@@ -37,6 +37,6 @@
       </div>
 </footer>
 
-<script src="js/bootstrap.bundle.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
