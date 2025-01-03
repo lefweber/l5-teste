@@ -13,7 +13,7 @@ class DetailsController extends Controller
   public function index($movieId)
   {
     $this->getMovieFromExternalApi($movieId);
-    $this->view('details', ['movie' => $this->movie, 'characters' => $this->characters], $this->css());
+    $this->view('details', ['movie' => $this->movie, 'characters' => $this->characters], $this->css(), $this->js());
   }
 
   private function getMovieFromExternalApi($movieId): void
@@ -43,7 +43,7 @@ class DetailsController extends Controller
 
   private function css(): string
   {
-    return <<<CSS
+    return "
       <style>
         .wrapper {
           display: grid;
@@ -64,6 +64,15 @@ class DetailsController extends Controller
           }
         }
       </style>
-    CSS;
+    ";
+  }
+
+  private function js(): string
+  {
+    return "
+      <script>
+        alert('hi');
+      </script>
+    ";
   }
 }

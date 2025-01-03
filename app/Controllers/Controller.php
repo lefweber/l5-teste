@@ -25,6 +25,11 @@ class Controller
   private $css;
 
   /**
+   * The JS script of the view
+   */
+  private $js;
+
+  /**
   * Mount, check and print the view
   *
   * @param string $viewName The name of the view to render.
@@ -33,11 +38,12 @@ class Controller
   *
   * @return void
   */
-  protected function view(string $viewName, array $data = [], string $css = ''): void
+  protected function view(string $viewName, array $data = [], string $css = '', string $js = ''): void
   {
     $this->viewName = $viewName;
     $this->data = $data;
     $this->css = $css;
+    $this->js = $js;
 
     $content = $this->renderView();
 
@@ -89,6 +95,7 @@ class Controller
   {
     extract($this->data);
     $css = $this->css;
+    $js = $this->js;
 
     $layout = __DIR__ . '/../Views/Layout.php';
     $viewPath = __DIR__ . '/../Views/' . ucfirst($this->viewName) . '.php';
