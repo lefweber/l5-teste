@@ -5,6 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use \App\Controllers\HomeController;
 use \App\Controllers\DetailsController;
 use \App\Controllers\SearchController;
+use \App\Controllers\ErrorController;
 
 use \App\Controllers\Api\MoviesController;
 
@@ -12,7 +13,6 @@ $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $method = $_SERVER['REQUEST_METHOD'];
 
 $api_prefix = 'api/v1/';
-
 
 $routes = [
   'GET' => [
@@ -25,7 +25,6 @@ $routes = [
 
 if (isset($routes[$method])) {
   foreach ($routes[$method] as $pattern => $action) {
-    // var_dump(preg_match('#^' . $pattern . '$#', $uri, $matches) . '<BR>');
     if (preg_match('#^' . $pattern . '$#', $uri, $matches)) {
       [$controller, $method] = $action;
 
@@ -38,5 +37,4 @@ if (isset($routes[$method])) {
   }
 }
 
-http_response_code(404);
-echo '404 - Página não encontrada';
+new ErrorController('Não foi possível localizar a página solicitada.', 404);

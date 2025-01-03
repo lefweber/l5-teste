@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Controllers;
+
+use \App\Controllers\ErrorController;
+
 /**
  * The base Controller for all Controllers
  */
@@ -38,12 +41,7 @@ class Controller
 
     $content = $this->renderView();
 
-    if($this->checkView($content)) {
-      $this->sendResponse('Página não encontrada.', 404);
-    }
-    else {
-      $this->sendResponse($content);
-    }
+    $this->sendResponse($content);
   }
 
   /**
@@ -70,19 +68,7 @@ class Controller
         return ob_get_clean();
     }
 
-    return "404 - View not found ($viewName).";
-  }
-
-  /**
-   * Check if the view was found.
-   *
-   * @param string $content The retorn from the view method
-   *
-   * @return bool False if view does not exist or True otherwise.
-   */
-  private function checkView(string $content): bool
-  {
-    return str_contains($content, '404 - View not found (');
+    new ErrorController('A view não foi encontrada.', 500);
   }
 
   /**
