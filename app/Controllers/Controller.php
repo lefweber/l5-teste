@@ -35,6 +35,7 @@ class Controller
   * @param string $viewName The name of the view to render.
   * @param array|null $data The data to be extracted for the view.
   * @param string|null $css The CSS content for the view.
+  * @param string|null $js The JS script for the view.
   *
   * @return void
   */
