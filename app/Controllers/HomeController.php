@@ -56,7 +56,8 @@ class HomeController extends Controller
     $movies = [];
     if (isset($data['result']) && is_array($data['result'])) {
       foreach ($data['result'] as $movieData) {
-          $movies[] = new Movie($movieData['properties']);
+        $movieData['properties']['uid'] = $movieData['uid'];
+        $movies[] = new Movie($movieData['properties']);
       }
     }
 

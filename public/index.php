@@ -17,7 +17,7 @@ $api_prefix = 'api/v1/';
 $routes = [
   'GET' => [
     '' => [HomeController::class, 'index'],
-    'details' => [DetailsController::class, 'index'],
+    'details/(\w+)' => [DetailsController::class, 'index'],
     'search' => [SearchController::class, 'index'],
     $api_prefix . 'search/(\w+)' => [MoviesController::class, 'show'],
   ],
@@ -30,7 +30,7 @@ if (isset($routes[$method])) {
 
       if (class_exists($controller) && method_exists($controller, $method)) {
         array_shift($matches);
-        (new $controller)->$method($matches);
+        (new $controller)->$method($matches[0]);
         exit;
       }
     }

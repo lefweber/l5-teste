@@ -3,15 +3,17 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-          <img src="img/revenge-of-the-sith_large.png" class="card-img-top" alt="...">
+          <img src="<?= $movie->image_url ?>" class="card-img-top" alt="<?= $movie->title ?>">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h2 class="card-title"><?= $movie->title ?></h2>
+            <p class="card-text"><?= $movie->synopsis ?></p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
+            <li class="list-group-item">Número do Epiódio: <?= $movie->episode_id ?></li>
+            <li class="list-group-item">Lançamento: <?= $movie->release_date ?></li>
+            <li class="list-group-item">Idade do Filme: <?= $movie->age ?></li>
+            <li class="list-group-item">Direção: <?= $movie->director ?></li>
+            <li class="list-group-item">Produção: <?= $movie->producer ?></li>
           </ul>
           <div class="card-body">
             <a href="#" class="card-link">Card link</a>
