@@ -11,7 +11,7 @@ class DetailsController extends Controller
   public function index($movieId)
   {
     $this->getMovieFromExternalApi($movieId);
-    $this->view('details', ['movie' => $this->movie]);
+    $this->view('details', ['movie' => $this->movie], $this->css());
   }
 
   private function getMovieFromExternalApi($movieId): void
@@ -45,5 +45,31 @@ class DetailsController extends Controller
     } else {
       new ErrorController('Não foi possível se comunicar com a API dos filmes Star Wars, por favor, verifique a sua conexão.', 500);
     }
+  }
+
+  private function css(): string
+  {
+    return <<<CSS
+      <style>
+        .wrapper {
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          column-gap: 10px;
+          row-gap: 1em;
+        }
+
+        @media (min-width: 575px) {
+          .wrapper {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (min-width: 1199px) {
+          .wrapper {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+      </style>
+    CSS;
   }
 }

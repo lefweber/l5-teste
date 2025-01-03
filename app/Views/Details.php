@@ -14,6 +14,45 @@
             <li class="list-group-item">Idade do Filme: <?= $movie->age ?></li>
             <li class="list-group-item">Direção: <?= $movie->director ?></li>
             <li class="list-group-item">Produção: <?= $movie->producer ?></li>
+            <li class="list-group-item">
+              <div>Personagens:</div>
+              <div class="wrapper">
+                <div class="d-flex align-items-center flex-column">
+                  <div style="max-width: 150px; background-color: #1b1e22; padding: 5px; border-radius: 10px; padding-bottom: 0; margin: 1rem;">
+                    <img src="/img/profile.png" alt="" style="max-width: 100%;">
+                  </div>
+                  <p style="text-align: center;">Luke Skywalker</p>
+                </div>
+
+                <div class="d-flex align-items-center flex-column">
+                  <div style="max-width: 150px; background-color: #1b1e22; padding: 5px; border-radius: 10px; padding-bottom: 0; margin: 1rem;">
+                    <img src="/img/profile.png" alt="" style="max-width: 100%;">
+                  </div>
+                  <p style="text-align: center;">Luke Skywalker</p>
+                </div>
+
+                <div class="d-flex align-items-center flex-column">
+                  <div style="max-width: 150px; background-color: #1b1e22; padding: 5px; border-radius: 10px; padding-bottom: 0; margin: 1rem;">
+                    <img src="/img/profile.png" alt="" style="max-width: 100%;">
+                  </div>
+                  <p style="text-align: center;">Luke Skywalker</p>
+                </div>
+
+                <div class="d-flex align-items-center flex-column">
+                  <div style="max-width: 150px; background-color: #1b1e22; padding: 5px; border-radius: 10px; padding-bottom: 0; margin: 1rem;">
+                    <img src="/img/profile.png" alt="" style="max-width: 100%;">
+                  </div>
+                  <p style="text-align: center;">Luke Skywalker</p>
+                </div>
+
+                <div class="d-flex align-items-center flex-column">
+                  <div style="max-width: 150px; background-color: #1b1e22; padding: 5px; border-radius: 10px; padding-bottom: 0; margin: 1rem;">
+                    <img src="/img/profile.png" alt="" style="max-width: 100%;">
+                  </div>
+                  <p style="text-align: center;">Luke Skywalker</p>
+                </div>
+              </div>
+            </li>
           </ul>
           <div class="card-body">
             <a href="#" class="card-link">Card link</a>
