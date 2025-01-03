@@ -47,6 +47,7 @@
             <img src="<?= $movie->small_image_url ?>" class="card-img-top" alt="<?= $movie->title ?>">
             <div class="card-body">
               <h5 class="card-title"><?= $movie->title ?></h5>
+              <p>Lançamento: <span class="text-info"><?= $movie->release_date ?></span></p>
               <p class="card-text" style="min-height: 72px;"><?= $movie->short_synopsis ?></p>
               <a href="/details/<?= $movie->id_external ?>" class="btn btn-outline-info">Mais Detalhes</a>
             </div>

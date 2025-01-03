@@ -30,7 +30,12 @@ class HomeController extends Controller
       }
     }
 
-    shuffle($movies);
+    usort($movies, function($a, $b) {
+      $dateA = \DateTime::createFromFormat('d/m/Y', $a->release_date);
+      $dateB = \DateTime::createFromFormat('d/m/Y', $b->release_date);
+
+      return $dateA <=> $dateB;
+    });
 
     $this->movies = $movies;
   }
