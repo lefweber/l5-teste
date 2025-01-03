@@ -52,6 +52,19 @@ class DetailsController extends Controller
           row-gap: 1em;
         }
 
+        #arrowUP svg {
+          fill: #ffffff70;
+          width: 50px;
+          position: fixed;
+          bottom: 18px;
+          right: 18px;
+          cursor: pointer;
+        }
+
+        .arrowHide {
+          display: none;
+        }
+
         @media (min-width: 575px) {
           .wrapper {
             grid-template-columns: repeat(2, 1fr);
@@ -71,7 +84,24 @@ class DetailsController extends Controller
   {
     return "
       <script>
-        alert('hi');
+        const page = document.querySelector('#details');
+        const arrow = document.querySelector('#arrowUP');
+
+        window.addEventListener('scroll', () => {
+          if (Math.abs(page.getBoundingClientRect().top) > 600) {
+            arrow.classList.remove('arrowHide');
+          }
+          else {
+            arrow.classList.add('arrowHide');
+          }
+        });
+
+        arrow.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Smooth Scroll
+          });
+        });
       </script>
     ";
   }

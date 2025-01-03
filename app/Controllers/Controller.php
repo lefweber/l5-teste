@@ -97,6 +97,7 @@ class Controller
     extract($this->data);
     $css = $this->css;
     $js = $this->js;
+    $viewName = $this->viewName;
 
     $layout = __DIR__ . '/../Views/Layout.php';
     $viewPath = __DIR__ . '/../Views/' . ucfirst($this->viewName) . '.php';

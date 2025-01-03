@@ -17,9 +17,20 @@
     <a class="navbar-brand" href="/"><span style="font-size: 1.5rem; font-weight: bold; margin-right: 2px; color: rgba(10, 255, 250, 0.7);">SW</span>Tube</a>
     <div class="collapse navbar-collapse" id="navbarSWTube">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <?php
+          if ($viewName != 'home'):
+        ?>
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+            <div class="d-flex align-items-center">
+              <svg style="fill: #ffffff65; width: 20px; margin-left: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+              <a class="nav-link" style="font-weight: bold;" href="/">
+                Voltar ao Catálogo
+              </a>
+            </div>
         </li>
+        <?php endif; ?>
+
       </ul>
       <form action="/search" class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
