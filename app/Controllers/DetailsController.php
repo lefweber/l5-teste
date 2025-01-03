@@ -65,6 +65,27 @@ class DetailsController extends Controller
           display: none;
         }
 
+        .controls {
+          width: 120px;
+          padding: 10px;
+          margin-right: 10px;
+          border-radius: 50px;
+          background-color: #272a2d;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+        }
+
+        .controls p {
+          padding-left: 12px;
+          font-weight: bold;
+          margin-bottom: 0;
+        }
+
+        .controls:hover {
+          background-color:rgb(52, 56, 59);
+        }
+
         @media (min-width: 575px) {
           .wrapper {
             grid-template-columns: repeat(2, 1fr);
