@@ -33,68 +33,27 @@
 <main>
   <div class="container">
       <div class="row">
-          <div class="col-12 col-md-4 glow-div">
-            <div class="card">
-              <img src="img/the-phantom-menace_small.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="/details" class="btn btn-outline-info">Mais Detalhes</a>
-              </div>
+
+        <?php
+          $count = 1;
+          foreach ($movies as $movie):
+            if ($count == 3) {
+                echo '</div><div class="row row-space">';
+                $count = 1;
+            }
+        ?>
+        <div class="col-12 col-md-4 glow-div">
+          <div class="card">
+            <img src="<?= $movie->small_image_url ?>" class="card-img-top" alt="<?= $movie->title ?>">
+            <div class="card-body">
+              <h5 class="card-title"><?= $movie->title ?></h5>
+              <p class="card-text" style="min-height: 72px;"><?= $movie->short_synopsis ?></p>
+              <a href="/details/<?= $movie->id_external ?>" class="btn btn-outline-info">Mais Detalhes</a>
             </div>
           </div>
-          <div class="col-12 col-md-4 glow-div">
-            <div class="card">
-              <img src="img/return-of-the-jedi_small.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="/details" class="btn btn-outline-info">Mais Detalhes</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-4 glow-div">
-            <div class="card">
-              <img src="img/a-new-hope_small.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="/details" class="btn btn-outline-info">Mais Detalhes</a>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div class="row row-space">
-          <div class="col-12 col-md-4 glow-div">
-            <div class="card">
-              <img src="img/attack-of-the-clones_small.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="/details" class="btn btn-outline-info">Mais Detalhes</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-4 glow-div">
-            <div class="card">
-              <img src="img/revenge-of-the-sith_small.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="/details" class="btn btn-outline-info">Mais Detalhes</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-4 glow-div">
-            <div class="card">
-              <img src="img/the-empire-strikes-back_small.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="/details" class="btn btn-outline-info">Mais Detalhes</a>
-              </div>
-            </div>
-          </div>
+        </div>
+        <?php endforeach; ?>
+
       </div>
   </div>
 </main>
