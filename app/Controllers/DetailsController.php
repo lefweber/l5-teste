@@ -8,10 +8,12 @@ class DetailsController extends Controller
 {
   private $movie;
 
+  private $characters;
+
   public function index($movieId)
   {
     $this->getMovieFromExternalApi($movieId);
-    $this->view('details', ['movie' => $this->movie], $this->css());
+    $this->view('details', ['movie' => $this->movie, 'characters' => $this->characters], $this->css());
   }
 
   private function getMovieFromExternalApi($movieId): void
@@ -22,6 +24,21 @@ class DetailsController extends Controller
 
     $data = $this->callToExternalStarWarsAPI("films/$movieId");
     $this->movie = new Movie($data['result']['properties']);
+
+    $charactersData = $this->callToExternalStarWarsAPI('people?page=1&limit=100');
+
+    $characters = [];
+
+    foreach ($this->movie->characters as $characterId) {
+      foreach ($charactersData['results'] as $character) {
+        if($character['uid'] == $characterId) {
+          array_push($characters, $character['name']);
+          continue;
+        }
+      }
+    }
+
+    $this->characters = $characters;
   }
 
   private function css(): string

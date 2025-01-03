@@ -17,40 +17,20 @@
             <li class="list-group-item">
               <div>Personagens:</div>
               <div class="wrapper">
-                <div class="d-flex align-items-center flex-column">
-                  <div style="max-width: 150px; background-color: #1b1e22; padding: 5px; border-radius: 10px; padding-bottom: 0; margin: 1rem;">
-                    <img src="/img/profile.png" alt="" style="max-width: 100%;">
-                  </div>
-                  <p style="text-align: center;">Luke Skywalker</p>
-                </div>
 
+              <?php
+                foreach ($characters as $character):
+              ?>
                 <div class="d-flex align-items-center flex-column">
                   <div style="max-width: 150px; background-color: #1b1e22; padding: 5px; border-radius: 10px; padding-bottom: 0; margin: 1rem;">
-                    <img src="/img/profile.png" alt="" style="max-width: 100%;">
+                    <img src="/img/profile.png" alt="<?= $character ?>" style="max-width: 100%;">
                   </div>
-                  <p style="text-align: center;">Luke Skywalker</p>
+                  <p style="text-align: center;"><?= $character ?></p>
                 </div>
+              <?php
+                endforeach;
+              ?>
 
-                <div class="d-flex align-items-center flex-column">
-                  <div style="max-width: 150px; background-color: #1b1e22; padding: 5px; border-radius: 10px; padding-bottom: 0; margin: 1rem;">
-                    <img src="/img/profile.png" alt="" style="max-width: 100%;">
-                  </div>
-                  <p style="text-align: center;">Luke Skywalker</p>
-                </div>
-
-                <div class="d-flex align-items-center flex-column">
-                  <div style="max-width: 150px; background-color: #1b1e22; padding: 5px; border-radius: 10px; padding-bottom: 0; margin: 1rem;">
-                    <img src="/img/profile.png" alt="" style="max-width: 100%;">
-                  </div>
-                  <p style="text-align: center;">Luke Skywalker</p>
-                </div>
-
-                <div class="d-flex align-items-center flex-column">
-                  <div style="max-width: 150px; background-color: #1b1e22; padding: 5px; border-radius: 10px; padding-bottom: 0; margin: 1rem;">
-                    <img src="/img/profile.png" alt="" style="max-width: 100%;">
-                  </div>
-                  <p style="text-align: center;">Luke Skywalker</p>
-                </div>
               </div>
             </li>
           </ul>

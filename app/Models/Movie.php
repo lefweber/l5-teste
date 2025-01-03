@@ -16,6 +16,7 @@ class Movie
   public $episode_id;
   public $release_date;
   public $age;
+  public $characters;
 
   public function __construct(array $data)
   {
@@ -42,6 +43,8 @@ class Movie
     $this->release_date = date("d/m/Y", strtotime($data['release_date']));
 
     $this->age = $this->getAge($data['release_date']);
+
+    $this->extractCharacters($data['characters']);
   }
 
   private function getAge($date): string
@@ -66,5 +69,18 @@ class Movie
       $words = array_slice($words, 0, $wordLimit);
 
       return implode(' ', $words) . (count($words) >= $wordLimit ? '...' : '');
+  }
+
+  private function extractCharacters(array $charactersList): void
+  {
+    $characters = [];
+
+    foreach ($charactersList as $characterItem) {
+      $slashPos = strrpos($characterItem, '/');
+      $characterId = substr($characterItem, $slashPos+1);
+      array_push($characters, $characterId);
+    }
+
+    $this->characters = $characters;
   }
 }
