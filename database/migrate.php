@@ -1,9 +1,11 @@
 <?php
 
-$host = '127.0.0.1';
-$dbname = 'l5teste';
-$user = 'root';
-$password = 'root';
+$env = parse_ini_file(".env");
+
+$host = $env['DB_HOST'];
+$dbname = $env['DB_NAME'];
+$user =  $env['DB_USER'];
+$password = $env['DB_PASSWORD'];
 
 try {
   $pdo = new PDO("mysql:host=$host", $user, $password);
@@ -16,7 +18,7 @@ try {
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   $sql = "
-      CREATE TABLE IF NOT EXISTS movies (
+      CREATE TABLE IF NOT EXISTS movies_statuses (
           id INT AUTO_INCREMENT PRIMARY KEY,
           id_external INT NOT NULL UNIQUE,
           likes INT DEFAULT 0,
@@ -25,7 +27,7 @@ try {
           slug VARCHAR(255) UNIQUE
       );
 
-      INSERT INTO movies (id_external, likes, dislikes, views, slug)
+      INSERT INTO movies_statuses (id_external, likes, dislikes, views, slug)
       VALUES
         (1, 0, 0, 0, 'a-new-hope'),
         (2, 0, 0, 0, 'the-empire-strikes-back'),
