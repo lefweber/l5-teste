@@ -22,12 +22,8 @@ try {
           likes INT DEFAULT 0,
           dislikes INT DEFAULT 0,
           views INT DEFAULT 0,
-          slug VARCHAR(255)
+          slug VARCHAR(255) UNIQUE
       );
-
-      CREATE UNIQUE INDEX id_external_unique ON movies (id_external);
-
-      CREATE UNIQUE INDEX slug_unique ON movies (slug);
 
       INSERT INTO movies (id_external, likes, dislikes, views, slug)
       VALUES
