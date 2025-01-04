@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Movie;
+use App\Models\MovieStatus;
 
 class DetailsController extends Controller
 {
@@ -12,8 +13,9 @@ class DetailsController extends Controller
 
   public function index($movieId)
   {
+    MovieStatus::addView($movieId);
     $this->getMovieFromExternalApi($movieId);
-    $this->view('details', ['movie' => $this->movie, 'characters' => $this->characters], $this->css(), $this->js());
+    $this->view('details', ['movie' => $this->movie, 'characters' => $this->characters, 'views' => MovieStatus::$views], $this->css(), $this->js());
   }
 
   private function getMovieFromExternalApi($movieId): void
