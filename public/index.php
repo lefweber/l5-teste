@@ -21,6 +21,9 @@ $routes = [
     'search' => [SearchController::class, 'index'],
     $api_prefix . 'search/(\w+)' => [MoviesController::class, 'show'],
   ],
+  'PATCH' => [
+    $api_prefix . 'like/(\w+)' => [MoviesController::class, 'like'],
+  ]
 ];
 
 if (isset($routes[$method])) {
