@@ -8,12 +8,12 @@ class MovieStatus extends Model
 {
   private static $model = 'movies_statuses';
 
-  public $id;
-  public $id_external;
+  public static $id;
+  public static $id_external;
   public static $likes;
-  public $dislikes;
+  public static $dislikes;
   public static $views;
-  public $slug;
+  public static $slug;
 
   public static function addView(int $id): bool
   {
@@ -45,5 +45,21 @@ class MovieStatus extends Model
     }
 
     return 0;
+  }
+
+  public static function getStatus(int $id): bool
+  {
+    $movie = parent::first(self::$model, $id);
+
+    if(is_null($movie)) {
+      return false;
+    }
+
+   self::$id = $movie['id'];
+   self::$likes = $movie['likes'];
+   self::$dislikes = $movie['dislikes'];
+   self::$views = $movie['views'];
+
+   return true;
   }
 }

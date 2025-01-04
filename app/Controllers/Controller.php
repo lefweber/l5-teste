@@ -46,9 +46,15 @@ class Controller
     $this->css = $css;
     $this->js = $js;
 
+    extract($this->data);
+
+    if(is_null($code)) {
+      $code = 200;
+    }
+
     $content = $this->renderView();
 
-    $this->sendResponse($content);
+    $this->sendResponse($content, $code);
   }
 
   /**

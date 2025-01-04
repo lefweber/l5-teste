@@ -14,8 +14,9 @@ class DetailsController extends Controller
   public function index($movieId)
   {
     MovieStatus::addView($movieId);
+    MovieStatus::getStatus($movieId);
     $this->getMovieFromExternalApi($movieId);
-    $this->view('details', ['movie' => $this->movie, 'characters' => $this->characters, 'views' => MovieStatus::$views], $this->css(), $this->js());
+    $this->view('details', ['movie' => $this->movie, 'characters' => $this->characters, 'idMovie' => MovieStatus::$id, 'likes' => MovieStatus::$likes, 'dislikes' => MovieStatus::$dislikes, 'views' => MovieStatus::$views], $this->css(), $this->js());
   }
 
   private function getMovieFromExternalApi($movieId): void
@@ -76,6 +77,7 @@ class DetailsController extends Controller
           cursor: pointer;
           display: flex;
           align-items: center;
+          border: 0;
         }
 
         .controls p {
@@ -85,7 +87,11 @@ class DetailsController extends Controller
         }
 
         .controls:hover {
-          background-color:rgb(52, 56, 59);
+          background-color:rgb(64, 67, 70);
+        }
+
+        .controls_button:hover svg {
+          fill:rgb(255, 61, 61) !important;
         }
 
         @media (min-width: 575px) {
@@ -109,6 +115,7 @@ class DetailsController extends Controller
       <script>
         const page = document.querySelector('#details');
         const arrow = document.querySelector('#arrowUP');
+        const likeButton = document.querySelector('#likeButton');
 
         window.addEventListener('scroll', () => {
           if (Math.abs(page.getBoundingClientRect().top) > 600) {
@@ -125,6 +132,30 @@ class DetailsController extends Controller
             behavior: 'smooth' // Smooth Scroll
           });
         });
+
+        likeButton.addEventListener('click', () => {
+          callApi('http://localhost:8000/api/v1/like/');
+        });
+
+        async function callApi(url) {
+          try {
+            const response = await fetch(url + likeButton.dataset.idMovie, {
+              method: 'PATCH',
+            });
+
+            if (!response.ok) {
+              throw new Error('Response status: ' + response.message);
+            }
+
+            const json = await response.json();
+
+            document.querySelector('#likes').innerHTML = json.likes;
+
+            console.log(json);
+          } catch (error) {
+            console.error(error.message);
+          }
+        }
       </script>
     ";
   }
