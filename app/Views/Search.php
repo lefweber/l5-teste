@@ -8,42 +8,23 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-12">
-        <div class="card mb-3">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="img/a-new-hope_large.jpg" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                <div class="d-flex justify-content-end">
-                  <a href="/details" class="btn btn-outline-info">Mais Detalhes</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
+    <?php
+      foreach ($movies as $movie):
+    ?>
     <div class="row">
       <div class="col-12">
         <div class="card mb-3">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="img/a-new-hope_large.jpg" class="img-fluid rounded-start" alt="...">
+              <img src="<?= $movie->small_image_url ?>" class="img-fluid rounded-start" alt="<?= $movie->title ?>">
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                <div class="d-flex justify-content-end">
-                  <a href="/details" class="btn btn-outline-info">Mais Detalhes</a>
+                <h5 class="card-title"><?= $movie->title ?></h5>
+                <p class="card-text" style="min-height: 48px;"><?= $movie->short_synopsis ?></p>
+                <div class="d-flex justify-content-end" style="padding-top: 65px;">
+                  <a href="/details/<?= $movie->id_external ?>" class="btn btn-outline-info">Mais Detalhes</a>
                 </div>
               </div>
             </div>
@@ -51,5 +32,7 @@
         </div>
       </div>
     </div>
+    <?php endforeach; ?>
+
   </div>
 </main>

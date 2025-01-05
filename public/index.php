@@ -18,7 +18,7 @@ $routes = [
   'GET' => [
     '' => [HomeController::class, 'index'],
     'details/(\w+)' => [DetailsController::class, 'index'],
-    'search' => [SearchController::class, 'search'],
+    'search' => [SearchController::class, 'index'],
   ],
   'PATCH' => [
     $api_prefix . 'like/(\w+)' => [MoviesController::class, 'like'],
