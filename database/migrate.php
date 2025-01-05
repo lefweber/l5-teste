@@ -27,7 +27,7 @@ try {
           slug VARCHAR(255) UNIQUE
       );
 
-      INSERT INTO movies_statuses (id_external, likes, dislikes, views, slug)
+      INSERT IGNORE INTO movies_statuses (id_external, likes, dislikes, views, slug)
       VALUES
         (1, 0, 0, 0, 'a-new-hope'),
         (2, 0, 0, 0, 'the-empire-strikes-back'),
@@ -35,6 +35,13 @@ try {
         (4, 0, 0, 0, 'the-phantom-menace'),
         (5, 0, 0, 0, 'attack-of-the-clones'),
         (6, 0, 0, 0, 'revenge-of-the-sith');
+
+      CREATE TABLE IF NOT EXISTS logs (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        class_name VARCHAR(255) NOT NULL,
+        message TEXT NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      );
   ";
 
   $pdo->exec($sql);

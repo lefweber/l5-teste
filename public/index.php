@@ -40,4 +40,4 @@ if (isset($routes[$method])) {
   }
 }
 
-new ErrorController('Não foi possível localizar a página solicitada.', 404);
+new ErrorController("Não foi possível localizar a página solicitada: $uri | $method", 404);

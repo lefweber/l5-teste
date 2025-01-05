@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Log;
 use App\Models\Movie;
 
 class SearchController extends Controller
@@ -17,6 +18,7 @@ class SearchController extends Controller
     if ($query) {
       $this->data = $this->callToExternalStarWarsAPI('films');
       $this->search($query);
+      Log::save("Realizada uma busca pelo termo '$query'");
       $this->view('search', ['query' => $query, 'movies' => $this->movies]);
       exit;
     }
