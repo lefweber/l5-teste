@@ -47,6 +47,25 @@ class MovieStatus extends Model
     return 0;
   }
 
+  public static function addDislike(int $id): int
+  {
+    $movie = parent::first(self::$model, $id);
+
+    if(is_null($movie)) {
+      return 0;
+    }
+
+    self::$dislikes = $movie['dislikes'] + 1;
+
+    $success = Database::execute('UPDATE ' . self::$model . ' SET dislikes = ? WHERE id = ?', [self::$dislikes, $movie['id']]);
+
+    if($success) {
+      return self::$dislikes;
+    }
+
+    return 0;
+  }
+
   public static function getStatus(int $id): bool
   {
     $movie = parent::first(self::$model, $id);

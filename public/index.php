@@ -23,7 +23,8 @@ $routes = [
   ],
   'PATCH' => [
     $api_prefix . 'like/(\w+)' => [MoviesController::class, 'like'],
-  ]
+    $api_prefix . 'dislike/(\w+)' => [MoviesController::class, 'dislike'],
+  ],
 ];
 
 if (isset($routes[$method])) {
