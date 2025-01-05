@@ -9,20 +9,11 @@ class Database {
     {
       if (self::$pdo === null) {
         $env = parse_ini_file("../.env");
-        self::$pdo = new \PDO("mysql:host={$env['DB_HOST']};dbname={$env['DB_NAME']}", "{$env['DB_USER']}", "{$env['DB_PASSWORD']}");
+        self::$pdo = new \PDO("mysql:host={$env['DB_HOST']};port={$env['DB_PORT']};dbname={$env['DB_NAME']}", "{$env['DB_USER']}", "{$env['DB_PASSWORD']}");
         self::$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
       }
 
       return self::$pdo;
-    }
-
-    public static function query(string $sql, array $params = []): array
-    {
-      $pdo = self::getConnection();
-      $stmt = $pdo->prepare($sql);
-      $stmt->execute($params);
-
-      return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public static function queryOne(string $sql, array $params = []): ?array
