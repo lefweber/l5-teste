@@ -116,6 +116,7 @@ class DetailsController extends Controller
         const page = document.querySelector('#details');
         const arrow = document.querySelector('#arrowUP');
         const likeButton = document.querySelector('#likeButton');
+        const dislikeButton = document.querySelector('#dislikeButton');
 
         window.addEventListener('scroll', () => {
           if (Math.abs(page.getBoundingClientRect().top) > 600) {
@@ -134,12 +135,16 @@ class DetailsController extends Controller
         });
 
         likeButton.addEventListener('click', () => {
-          callApi('http://localhost:8000/api/v1/like/');
+          callApi('http://localhost:8000/api/v1/like/' + likeButton.dataset.idMovie, 'likes');
         });
 
-        async function callApi(url) {
+        dislikeButton.addEventListener('click', () => {
+          callApi('http://localhost:8000/api/v1/dislike/' + dislikeButton.dataset.idMovie, 'dislikes');
+        });
+
+        async function callApi(url, id) {
           try {
-            const response = await fetch(url + likeButton.dataset.idMovie, {
+            const response = await fetch(url, {
               method: 'PATCH',
             });
 
@@ -149,7 +154,12 @@ class DetailsController extends Controller
 
             const json = await response.json();
 
-            document.querySelector('#likes').innerHTML = json.likes;
+            if(id == 'likes') {
+              document.querySelector('#likes').innerHTML = json.likes;
+            }
+            else {
+              document.querySelector('#dislikes').innerHTML = json.dislikes;
+            }
 
             console.log(json);
           } catch (error) {
