@@ -25,8 +25,7 @@
       "cp vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/css/",
       "cp vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js public/js/",
       "cp vendor/components/jquery/jquery.min.js public/js/",
-      "php database/migrate.php",
-      "cp .env.example .env"
+      "php database/migrate.php"
     ],
     "post-update-cmd": [
       "mkdir -p public/css public/js",

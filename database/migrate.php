@@ -3,12 +3,13 @@
 $env = parse_ini_file(".env");
 
 $host = $env['DB_HOST'];
+$port = $env['DB_PORT'];
 $dbname = $env['DB_NAME'];
 $user =  $env['DB_USER'];
 $password = $env['DB_PASSWORD'];
 
 try {
-  $pdo = new PDO("mysql:host=$host", $user, $password);
+  $pdo = new PDO("mysql:host=$host;port={$env['DB_PORT']}", $user, $password);
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   $pdo->exec("CREATE DATABASE IF NOT EXISTS $dbname CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
