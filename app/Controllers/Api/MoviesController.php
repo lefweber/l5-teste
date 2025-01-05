@@ -6,11 +6,6 @@ use App\Models\MovieStatus;
 
 class MoviesController extends ApiController
 {
-    public function show(array $data = [])
-    {
-      $this->sendResponse(['message' => 'Busca realizada com sucesso!', 'data' => $data]);
-    }
-
     public function like(int $movieId)
     {
       $likes = MovieStatus::addLike($movieId);

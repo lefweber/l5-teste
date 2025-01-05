@@ -32,9 +32,9 @@
         <?php endif; ?>
 
       </ul>
-      <form action="/search" class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-info" type="submit">Search</button>
+      <form action="/search" method="GET" class="d-flex" role="search">
+        <input name="q" class="form-control me-2" type="search" placeholder="Buscar filme..." aria-label="Search">
+        <button class="btn btn-outline-info" type="submit">Procurar</button>
       </form>
     </div>
   </div>
