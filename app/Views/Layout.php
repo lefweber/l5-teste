@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SWTube - Uma Plataforma Star Wars</title>
   <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <style>
+    #logo {
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    #logo.hover-effect {
+      padding-left: 10px;
+      filter: blur(0.8px);
+      color: rgba(225, 248, 255, 0.9);
+    }
+  </style>
   <?= $css ?>
 </head>
 <body data-bs-theme="dark">
@@ -14,7 +26,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSWTube" aria-controls="navbarSWTube" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="/"><span style="font-size: 1.5rem; font-weight: bold; margin-right: 2px; color: rgba(10, 255, 250, 0.7);">SW</span>Tube</a>
+    <a id="logo" class="navbar-brand" href="/"><span style="font-size: 1.5rem; font-weight: bold; margin-right: 2px; color: rgba(10, 255, 250, 0.7);">SW</span>Tube</a>
     <div class="collapse navbar-collapse" id="navbarSWTube">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
@@ -49,8 +61,21 @@
 </footer>
 
 <script src="/js/bootstrap.bundle.min.js"></script>
-
+<script src="/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+    $('#logo').hover(
+      function () {
+        $(this).addClass('hover-effect'); // Adiciona o efeito no hover
+      },
+      function () {
+        $(this).removeClass('hover-effect'); // Remove o efeito ao sair
+      }
+    );
+  });
+</script>
 <?= $js ?>
+
 
 </body>
 </html>

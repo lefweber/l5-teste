@@ -16,16 +16,19 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "twbs/bootstrap": "^5.3"
+        "twbs/bootstrap": "^5.3",
+        "components/jquery": "^3.7"
     },
     "scripts": {
       "post-install-cmd": [
           "cp vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/css/",
-          "cp vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js public/js/"
+          "cp vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js public/js/",
+          "cp vendor/components/jquery/jquery.min.js public/js/"
       ],
       "post-update-cmd": [
           "cp vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/css/",
-          "cp vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js public/js/"
+          "cp vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js public/js/",
+          "cp vendor/components/jquery/jquery.min.js public/js/"
       ]
   }
 }
