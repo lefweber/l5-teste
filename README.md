@@ -73,7 +73,7 @@ O projeto foi desenvolvido com uso de **Orientação a Objetos (OO)** e segue o 
 ## Requisitos
 
 - PHP 7.4 ou superior instalado na máquina.
-- Banco de dados MySQL ou MariaDB (caso deseje, pode utuilizar o docker-compose do projeto).
+- Banco de dados MySQL ou MariaDB (caso deseje, pode utilizar o docker-compose do projeto).
 - Docker (opcional, para uso do Docker Compose).
 - Composer (para gerenciamento de dependências).
 
