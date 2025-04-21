@@ -106,6 +106,33 @@ Ao rodar o comando acima ou **composer update**, por conveniência após a insta
 - Copia os arquivos **bootstrap.bundle.min.js** e **jquery.min.js** para **public/js**;
 - Roda a migração localizada em **database/migrate.php** para criação do banco de dados e tabelas.
 
+#### Observação Importante
+
+No caso de erro na migração, como este abaixo:
+
+```bash
+> php database/migrate.php
+Erro na migração!
+could not find driver
+Script php database/migrate.php handling the post-install-cmd event returned with error code 1
+```
+
+É necessário instalar o driver do PDO. Rode o comando:
+
+```bash
+sudo apt install php-mysql
+```
+
+Agora rode novamente:
+
+```bash
+composer install
+```
+
+#### Dependências de Ambiente de Desenvolvimento
+
+Além do módulo acima <em><strong>php-mysql</em></strong>, também é necessário o <em><strong>php-curl</em></strong>.
+
 4. **Inicie o servidor embutido do PHP:**
 
 ```bash
