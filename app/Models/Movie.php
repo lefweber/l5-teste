@@ -24,7 +24,7 @@ class Movie
 
     $this->synopsis = $data['opening_crawl'] ?? null;
 
-    $this->short_synopsis = $this->getShortSynopsis($this->synopsis);
+    $this->short_synopsis = $data['short_synopsis'];
 
     $this->slug = strtolower(str_replace(' ', '-', $this->title));
 
@@ -32,7 +32,7 @@ class Movie
 
     $this->small_image_url = '/img/' . $this->slug  . '_small.jpg';
 
-    $this->id_external = $data['uid'];
+    $this->id_external = $data['id_external'];
 
     $this->director = $data['director'];
 
@@ -40,9 +40,9 @@ class Movie
 
     $this->episode_id = $data['episode_id'];
 
-    $this->release_date = date("d/m/Y", strtotime($data['release_date']));
+    $this->release_date = $data['release_date'];
 
-    $this->age = $this->getAge($data['release_date']);
+    $this->age = $this->getAge(date("m/d/Y", strtotime($data['release_date'])));
 
     $this->extractCharacters($data['characters']);
   }
@@ -62,16 +62,7 @@ class Movie
     return implode($age);
   }
 
-  private function getShortSynopsis($synopsis, $wordLimit = 16)
-  {
-      $words = explode(' ', $synopsis);
-
-      $words = array_slice($words, 0, $wordLimit);
-
-      return implode(' ', $words) . (count($words) >= $wordLimit ? '...' : '');
-  }
-
-  private function extractCharacters(array $charactersList): void
+   private function extractCharacters(array $charactersList): void
   {
     $characters = [];
 

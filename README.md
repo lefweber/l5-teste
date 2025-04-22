@@ -1,6 +1,10 @@
-# Projeto de API de Filmes e Catálogo Web Star Wars (Teste Técnico)
+# Projeto WEB de Filmes e Catálogo Web Star Wars (Teste Técnico)
 
 Este é um projeto desenvolvido como um **teste técnico**, que combina funcionalidades de uma **API RESTful** com um **catálogo web** para exibição de filmes em PHP puro.
+
+## Observação de Dependência
+
+- Funciona em conjunto com o projeto de API em https://github.com/lefweber/l5-teste-api.git
 
 ## Regras
 
@@ -27,7 +31,7 @@ A aplicação exibe todos os filmes da saga em um catálogo ordenado por data de
 - Data de lançamento;
 - Resumo.
 
-Ao clicar em "Mais Detalhes", o usuário visualiza uma página detalhada contendo:
+Ao clicar em "Mais Detalhes", é exibido um modal contendo:
 
 - Nome do filme;
 - Sinopse;
@@ -40,10 +44,13 @@ Ao clicar em "Mais Detalhes", o usuário visualiza uma página detalhada contend
 - Botão de Like e Dislike;
 - Indicativo de visualizações.
 
+Também existe um botão para o usuário copiar e compartilhar o link.
+
 ## Funcionalidades Adicionais
 
 Além do requisito básico, foram implementadas as seguintes **features opcionais**:
 
+- Feature de Copiar e Compartilhar (<strong>NOVA</strong>)
 - Busca simples de filmes;
 - Possibilidade de dar **like** e **dislike** em filmes;
 - Contagem de visualizações (views) de cada filme;
@@ -63,13 +70,6 @@ Além do requisito básico, foram implementadas as seguintes **features opcionai
 
 O projeto foi desenvolvido com uso de **Orientação a Objetos (OO)** e segue o padrão **MVC** para separação de responsabilidades.
 
-## Recursos Internos
-
-- Banco de dados para armazenar informações sobre filmes, logs de erros e eventos.
-- Biblioteca cURL para integração com a API externa SWAPI.
-- Docker Compose com uma imagem do MySQL para configuração rápida do ambiente.
-- Ao rodar **composer install**, a migração criará automaticamente o banco de dados e o alimentará com os registros iniciais.
-
 ## Requisitos
 
 - PHP 7.4 ou superior instalado na máquina.
@@ -86,72 +86,32 @@ Copie o arquivo .env.example para .env e configure suas variáveis de ambiente, 
 cp .env.example .env
 ```
 
-2. **Rode o container:**
-Se estiver utilizando Docker, suba o container MySQL.
+2. **Instale as dependências:**
 
 ```bash
-docker compose up
+sudo apt install php-curl php-mysql
 ```
-
-3. **Instale as dependências e rode a migração:**
 
 ```bash
 composer install
 ```
-
 Ao rodar o comando acima ou **composer update**, por conveniência após a instalação das dependências, um script sempre realiza o seguinte:
 
 - Cria as pastas **public/css** e **public/js** se não houver;
 - Copia o arquivo **bootstrap.min.css** para **public/css**;
 - Copia os arquivos **bootstrap.bundle.min.js** e **jquery.min.js** para **public/js**;
-- Roda a migração localizada em **database/migrate.php** para criação do banco de dados e tabelas.
 
-#### Observação Importante
-
-No caso de erro na migração, como este abaixo:
-
-```bash
-> php database/migrate.php
-Erro na migração!
-could not find driver
-Script php database/migrate.php handling the post-install-cmd event returned with error code 1
-```
-
-É necessário instalar o driver do PDO. Rode o comando:
-
-```bash
-sudo apt install php-mysql
-```
-
-Agora rode novamente:
-
-```bash
-composer install
-```
-
-#### Dependências de Ambiente de Desenvolvimento
-
-Além do módulo acima <em><strong>php-mysql</em></strong>, também é necessário o <em><strong>php-curl</em></strong>.
-
-4. **Inicie o servidor embutido do PHP:**
+3. **Inicie o servidor embutido do PHP:**
 
 ```bash
 php -S localhost:8000 -t public
 ```
 
-5. **Acesse a aplicação no navegador:**
+4. **Acesse a aplicação no navegador:**
 
 ```bash
 xdg-open http://localhost:8000/
 ```
-
-## Exemplo de Uso da API
-
-Adicionar like a um filme:
-PATCH /api/v1/like/{id}
-
-Adicionar dislike a um filme:
-PATCH /api/v1/dislike/{id}
 
 ## Licença
 

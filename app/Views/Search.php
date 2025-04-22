@@ -24,7 +24,7 @@
                 <h5 class="card-title"><?= $movie->title ?></h5>
                 <p class="card-text" style="min-height: 48px;"><?= $movie->short_synopsis ?></p>
                 <div class="d-flex justify-content-end" style="padding-top: 65px;">
-                  <a href="/details/<?= $movie->id_external ?>" class="btn btn-outline-info">Mais Detalhes</a>
+                  <a class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#detailModal" onClick="moreDetails('<?= $movie->id_external ?>', '<?= $movie->title ?>')">Mais Detalhes</a>
                 </div>
               </div>
             </div>
@@ -36,3 +36,5 @@
 
   </div>
 </main>
+
+<?php include __DIR__ . '/MainModal/modalBody.html'; ?>

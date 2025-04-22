@@ -3,10 +3,9 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use \App\Controllers\HomeController;
-use \App\Controllers\DetailsController;
 use \App\Controllers\SearchController;
 use \App\Controllers\ErrorController;
-
+use \App\Controllers\DetailsController;
 use \App\Controllers\Api\MoviesController;
 
 $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
@@ -17,12 +16,8 @@ $api_prefix = 'api/v1/';
 $routes = [
   'GET' => [
     '' => [HomeController::class, 'index'],
-    'details/(\w+)' => [DetailsController::class, 'index'],
     'search' => [SearchController::class, 'index'],
-  ],
-  'PATCH' => [
-    $api_prefix . 'like/(\w+)' => [MoviesController::class, 'like'],
-    $api_prefix . 'dislike/(\w+)' => [MoviesController::class, 'dislike'],
+    'details/(\w+)' => [DetailsController::class, 'index'],
   ],
 ];
 

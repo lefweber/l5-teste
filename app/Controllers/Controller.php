@@ -58,15 +58,19 @@ class Controller
   }
 
   /**
-   * Call the external Star Wars API
-   *
-   * @param string $resource Resource to get on API
+   * Return All Movies
    *
    * @return array
    */
-  protected function callToExternalStarWarsAPI(string $resource): array
+  protected function getMovies($id = null): array
   {
-    $url = "https://swapi.tech/api/$resource";
+    if(!is_null($id)) {
+      $url = "http://localhost:8001/api/v1/movies/$id";
+    }
+    else {
+      $url = "http://localhost:8001/api/v1/movies";
+    }
+
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -81,15 +85,15 @@ class Controller
     if ($httpCode === 200 && $response !== false) {
       $data = json_decode($response, true);
 
-      if(isset($data['message']) && $data['message'] == 'ok') {
+      if(isset($data['movies']) || isset($data['movie'])) {
           return $data;
       }
       else {
-        new ErrorController('Houve um problema na recepção dos dados da API externa.', 500);
+        new ErrorController('Não foi possível obter todos os filmes da API.', 500);
       }
     }
     else {
-      new ErrorController('Não foi possível se comunicar com a API dos filmes Star Wars, por favor, verifique a sua conexão.', 500);
+      new ErrorController('Não foi possível se comunicar com a API dos filmes.', 500);
     }
   }
 

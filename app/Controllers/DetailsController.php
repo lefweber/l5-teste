@@ -15,158 +15,53 @@ class DetailsController extends Controller
   {
     MovieStatus::addView($movieId);
     MovieStatus::getStatus($movieId);
-    $this->getMovieFromExternalApi($movieId);
-    $this->view('details', ['movie' => $this->movie, 'characters' => $this->characters, 'idMovie' => MovieStatus::$id, 'likes' => MovieStatus::$likes, 'dislikes' => MovieStatus::$dislikes, 'views' => MovieStatus::$views], $this->css(), $this->js());
+    $this->movie = $this->getMovies($movieId);
+    $this->view('details', $this->movie, $this->css(), $this->js());
   }
 
-  private function getMovieFromExternalApi($movieId): void
+  private function css()
   {
-    if(!is_numeric($movieId)) {
-      new ErrorController('Há algum problema com a URL solicitada.', 400);
-    }
+    $file = __DIR__ .'/../Views/MainModal/modalStyle.css';
+    $css = \file_get_contents($file);
 
-    $data = $this->callToExternalStarWarsAPI("films/$movieId");
-    $this->movie = new Movie($data['result']['properties']);
+    if ($css === false) {
+        echo "Erro ao ler o arquivo.";
+        exit; 
+    } 
 
-    $charactersData = $this->callToExternalStarWarsAPI('people?page=1&limit=100');
-
-    $characters = [];
-
-    foreach ($this->movie->characters as $characterId) {
-      foreach ($charactersData['results'] as $character) {
-        if($character['uid'] == $characterId) {
-          array_push($characters, $character['name']);
-          continue;
-        }
-      }
-    }
-
-    $this->characters = $characters;
+    return "<style>$css</style>";
   }
 
-  private function css(): string
+  private function js()
   {
-    return "
-      <style>
-        .wrapper {
-          display: grid;
-          grid-template-columns: repeat(1, 1fr);
-          column-gap: 10px;
-          row-gap: 1em;
-        }
+    return <<<JS
+    <script>
+      $('#likeButton').on('click', () => {
+        callApi('http://localhost:8001/api/v1/like/' + $('#likeButton').data('id-movie'), 'likes');
+      });
 
-        #arrowUP svg {
-          fill: #ffffff70;
-          width: 50px;
-          position: fixed;
-          bottom: 18px;
-          right: 18px;
-          cursor: pointer;
-        }
+      $('#dislikeButton').on('click', () => {
+        callApi('http://localhost:8001/api/v1/dislike/' + $('#dislikeButton').data('id-movie'), 'dislikes');
+      });
 
-        .arrowHide {
-          display: none;
-        }
-
-        .controls {
-          width: 120px;
-          padding: 10px;
-          margin-right: 10px;
-          border-radius: 50px;
-          background-color: #272a2d;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          border: 0;
-        }
-
-        .controls p {
-          padding-left: 12px;
-          font-weight: bold;
-          margin-bottom: 0;
-        }
-
-        .controls:hover {
-          background-color:rgb(64, 67, 70);
-        }
-
-        .controls_button:hover svg {
-          fill:rgb(255, 61, 61) !important;
-        }
-
-        @media (min-width: 575px) {
-          .wrapper {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-
-        @media (min-width: 1199px) {
-          .wrapper {
-            grid-template-columns: repeat(4, 1fr);
-          }
-        }
-      </style>
-    ";
-  }
-
-  private function js(): string
-  {
-    return "
-      <script>
-        const page = document.querySelector('#details');
-        const arrow = document.querySelector('#arrowUP');
-        const likeButton = document.querySelector('#likeButton');
-        const dislikeButton = document.querySelector('#dislikeButton');
-
-        window.addEventListener('scroll', () => {
-          if (Math.abs(page.getBoundingClientRect().top) > 600) {
-            arrow.classList.remove('arrowHide');
-          }
-          else {
-            arrow.classList.add('arrowHide');
-          }
-        });
-
-        arrow.addEventListener('click', () => {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth' // Smooth Scroll
-          });
-        });
-
-        likeButton.addEventListener('click', () => {
-          callApi('http://localhost:8000/api/v1/like/' + likeButton.dataset.idMovie, 'likes');
-        });
-
-        dislikeButton.addEventListener('click', () => {
-          callApi('http://localhost:8000/api/v1/dislike/' + dislikeButton.dataset.idMovie, 'dislikes');
-        });
-
-        async function callApi(url, id) {
-          try {
-            const response = await fetch(url, {
-              method: 'PATCH',
-            });
-
-            if (!response.ok) {
-              throw new Error('Response status: ' + response.message);
-            }
-
-            const json = await response.json();
-
+      function callApi(url, id) {
+        $.ajax({
+          url: url,
+          type: 'PATCH',
+          success: function(response) {
             if(id == 'likes') {
-              document.querySelector('#likes').innerHTML = json.likes;
+              $('#movie-likes').text(response.likes);
             }
             else {
-              document.querySelector('#dislikes').innerHTML = json.dislikes;
+              $('#movie-dislikes').text(response.dislikes);
             }
-
-            console.log(json);
-          } catch (error) {
-            console.error(error.message);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error:', error);
           }
-        }
-      </script>
-    ";
+        });
+      }
+    </script>
+    JS;
   }
 }

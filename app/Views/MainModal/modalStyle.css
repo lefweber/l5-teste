@@ -1,0 +1,44 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 10px;
+    row-gap: 1em;
+  }
+
+  .controls {
+    width: 120px;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 50px;
+    background-color: #272a2d;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 0;
+  }
+
+  .controls p {
+    padding-left: 12px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  .controls:hover {
+    background-color:rgb(64, 67, 70);
+  }
+
+  .controls_button:hover svg {
+    fill:rgb(255, 61, 61) !important;
+  }
+  
+  @media (min-width: 575px) {
+    .wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1199px) {
+    .wrapper {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }

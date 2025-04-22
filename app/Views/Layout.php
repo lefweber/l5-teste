@@ -18,7 +18,7 @@
       color: rgba(225, 248, 255, 0.9);
     }
   </style>
-  <?= $css ?>
+  <?= $css ?? '' ?>
 </head>
 <body data-bs-theme="dark">
 
@@ -53,7 +53,7 @@
   </div>
 </nav>
 
-<?php echo $viewContent ?>
+<?php echo $viewContent ?? '' ?>
 
 <footer style="margin-top: 50px;">
       <div class="d-flex justify-content-center align-items-center text-body-tertiary w-100" style="font-size: 0.8rem; height: 50px; background-color: rgb(23, 25, 28);">
@@ -75,8 +75,7 @@
     );
   });
 </script>
-<?= $js ?>
-
+<?= $js ?? '' ?>
 
 </body>
 </html>

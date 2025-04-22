@@ -10,23 +10,17 @@ class HomeController extends Controller
 
   public function index()
   {
-    $this->getAllMoviesFromExternalApi();
-    $this->view('home', ['movies' => $this->movies], $this->css());
-  }
-
-  private function getAllMoviesFromExternalApi(): void
-  {
-    $data = $this->callToExternalStarWarsAPI('films');
+    $data = $this->getMovies();
     $this->makeMoviesList($data);
+    $this->view('home', ['movies' => $this->movies], $this->css(), $this->js());
   }
 
   private function makeMoviesList($data): void
   {
     $movies = [];
-    if (isset($data['result']) && is_array($data['result'])) {
-      foreach ($data['result'] as $movieData) {
-        $movieData['properties']['uid'] = $movieData['uid'];
-        $movies[] = new Movie($movieData['properties']);
+    if (isset($data['movies']) && is_array($data['movies'])) {
+      foreach ($data['movies'] as $movieData) {
+        $movies[] = new Movie($movieData);
       }
     }
 
@@ -42,6 +36,14 @@ class HomeController extends Controller
 
   private function css()
   {
+    $file = __DIR__ .'/../Views/MainModal/modalStyle.css';
+    $css = \file_get_contents($file);
+
+    if ($css === false) {
+        echo "Erro ao ler o arquivo.";
+        exit; 
+    }
+
     return <<<CSS
     <style>
         .glow-div {
@@ -67,6 +69,10 @@ class HomeController extends Controller
             padding-bottom: 50px;
         }
 
+        .share:hover svg {
+          fill:rgb(20, 220, 255) !important;
+        }
+
         @media(max-width: 768px) {
             .glow-div {
                 margin-top: 20px;
@@ -85,7 +91,37 @@ class HomeController extends Controller
                 display: none;
             }
         }
+
+        $css
     </style>
     CSS;
+  }
+
+  private function js()
+  {
+    $file = __DIR__ .'/../Views/MainModal/modalScript.js';
+    $script = \file_get_contents($file);
+
+    if ($script === false) {
+        echo "Erro ao ler o arquivo.";
+        exit; 
+    }
+
+    return <<<JS
+    <script>
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+      function share(id) {
+        navigator.clipboard.writeText('http://localhost:8000/details/' + id);
+        $('#toast').show();
+        setTimeout(() => {
+          $('#toast').hide();
+        }, 3000);
+      }
+
+      $script
+    </script>
+    JS;
   }
 }
