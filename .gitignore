@@ -3,3 +3,4 @@ vendor
 .docker
 public/css
 public/js
+composer.lock
