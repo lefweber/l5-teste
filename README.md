@@ -103,6 +103,9 @@ Ao rodar o comando acima ou **composer update**, por conveniência após a insta
 
 3. **Inicie o servidor embutido do PHP:**
 
+#### Importante
+É necessário já estar com projeto de API rodando na porta 8001. Endereço: https://github.com/lefweber/l5-teste-api.git
+
 ```bash
 php -S localhost:8000 -t public
 ```
